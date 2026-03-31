@@ -1,0 +1,328 @@
+{%  comment %}
+Custom section developed by Aneurin Barker Snook <aneurin@aneur.in> for Saderra <corinne@saderra.com> Modern Leisure.
+{% endcomment %}
+{{ 'component-ml-product-info.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign columns_mobile_int = section.settings.columns_mobile | plus: 0
+  assign columns_desktop = section.settings.columns_desktop
+  assign columns_tablet = columns_desktop
+-%}
+<script type="application/json" id="ml-product-info-{{ product.id }}-data">
+{
+  "{{ product.id }}": {}{% if product.variants.size > 0 %},{% endif %}
+  {% for v in product.variants %}
+  "{{ v.id }}": {
+    "sku": { "value": "{{ v.sku }}" },
+    "upc": { "value": "{{ v.metafields.custom.upc.value }}" },
+    "color": { "value": "{{ v.metafields.custom.color.value }}" },
+    "material": { "value": {{ v.metafields.custom.material.value | json }} },
+    "size": { "value": "{{ v.metafields.custom.size.value | escape }}" }
+  }{% unless forloop.last %},{% endunless %}
+  {%  endfor  %}
+}
+</script>
+<script type="application/javascript">
+function SpecificationHtml(input) {
+  return `
+<ul>
+  <li>SKU: <span>${input.sku.value}</span></li>
+  <li>UPC: <span>${input.upc.value}</span></li>
+
+  ${input.product_weight?.value ? `<li>Weight: <span>${input.product_weight.value}${input.product_weight.unit}</span></li>` : ''}
+
+  ${input.color?.value ? `<li>Color: <span>${input.color.value}</span></li>` : ''}
+  ${input.material?.value?.length ? `<li>Material: <span>${input.material.value.join(', ')}` : ''}
+  ${input.size?.value?.length ? `<li>Size: <span>${input.size.value}</span></li>` : ''}
+</ul>
+`
+}
+
+function getVariantSpecification(variantId) {
+  try {
+    const el = document.getElementById('ml-product-info-{{ product.id }}-data')
+    if (!el) throw new Error('unable to find specification data')
+
+    const data = JSON.parse(el.textContent)
+    return data?.[variantId] || {}
+  }
+  catch(err) {
+    console.error(err)
+    return []
+  }
+}
+
+function updateProductSpecification(variantId) {
+  const el = document.querySelector('#ml-product-info-{{ product.id }} [rel="specification"]')
+  if (!el) {
+    console.error(new Error('unable to find container element'))
+    return
+  }
+
+  const specification = getVariantSpecification(variantId)
+  console.log(specification)
+  const html = SpecificationHtml(specification)
+
+  while (el.firstChild) {
+    el.removeChild(el.firstChild)
+  }
+  el.innerHTML = html
+}
+
+document.querySelector('.product-variant-id')?.addEventListener('change', function() {
+  updateProductSpecification(this.value)
+})
+
+document.addEventListener('readystatechange', function(event) {
+  if (event.target.readyState === 'interactive') {
+    const input = document.querySelector('.product-variant-id')
+    if (input) {
+      updateProductSpecification(input.value)
+    }
+  }
+})
+</script>
+
+{% render 'divider',
+  show_divider: section.settings.show_section_divider,
+  divider_width: section.settings.divider_width
+%}
+
+<div
+  id="ml-product-info-{{ product.id }}"
+  class="section section--padding ml-product-info"
+  style="--section-padding-top: {{ section.settings.padding_top }}px;--section-padding-bottom: {{ section.settings.padding_bottom }}px;">
+  <div class="page-width">
+    <div class="f-grid f-grid-{{ columns_mobile_int }}-cols md:f-grid-{{ columns_tablet }}-cols lg:f-grid-{{ columns_desktop }}-cols f-grid--gap-{{ section.settings.column_gap }}">
+      <div class="product-features f-column blocks-radius color-{{ section.settings.color_scheme }}">
+        <h2 class="ml-product-info__title rich-text__heading inline-richtext overflow-hidden {{ section.settings.heading_size }}">{{ section.settings.heading_features }}</h2>
+        <div class="ml-product-info__text rich-text__text rte text-base" rel="features">
+          <ul>
+            {% for line in product.metafields.custom.bullet_point_copy.value %}
+            <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="product-info f-column blocks-radius color-{{ section.settings.color_scheme }}">
+        <h2 class="ml-product-info__title rich-text__heading inline-richtext overflow-hidden {{ section.settings.heading_size }}">{{ section.settings.heading_specification }}</h2>
+        <div class="ml-product-info__text rich-text__text rte text-base" rel="specification">
+          {% if product.metafields.custom.specification.value.size > 0 %}
+          <ul>
+            {% for line in product.metafields.custom.specification.value %}
+            <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.ml-product-info.name",
+  "class": "section",
+  "tag": "section",
+  "disabled_on": {
+    "groups": ["header", "footer", "custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-2"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.ml-product-info.headings.name"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:sections.all.text_size.heading.label",
+      "default": "h1",
+      "options": [
+        {
+          "value": "h6",
+          "label": "t:sections.all.text_size.options__h6.label"
+        },
+        {
+          "value": "h5",
+          "label": "t:sections.all.text_size.options__h5.label"
+        },
+        {
+          "value": "h4",
+          "label": "t:sections.all.text_size.options__h4.label"
+        },
+        {
+          "value": "h3",
+          "label": "t:sections.all.text_size.options__h3.label"
+        },
+        {
+          "value": "h2",
+          "label": "t:sections.all.text_size.options__h2.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.text_size.options__h1.label"
+        },
+        {
+          "value": "hd3",
+          "label": "t:sections.all.text_size.options__hd3.label"
+        },
+        {
+          "value": "hd2",
+          "label": "t:sections.all.text_size.options__hd2.label"
+        },
+        {
+          "value": "hd1",
+          "label": "t:sections.all.text_size.options__hd1.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "heading_features",
+      "label": "t:sections.ml-product-info.features.heading.label",
+      "default": "t:sections.ml-product-info.features.heading.default"
+    },
+    {
+      "type": "text",
+      "id": "heading_specification",
+      "label": "t:sections.ml-product-info.specification.heading.label",
+      "default": "t:sections.ml-product-info.specification.heading.default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.grid.name"
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.all.mobile.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.all.mobile.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "2",
+      "label": "t:sections.all.grid.columns_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "column_gap",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.all.grid.column_gap.options__none.label"
+        },
+        {
+          "value": "extra-small",
+          "label": "t:sections.all.grid.column_gap.options__xs.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.all.grid.column_gap.options__sm.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.all.grid.column_gap.options__md.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.all.grid.column_gap.options__lg.label"
+        },
+        {
+          "value": "extra-large",
+          "label": "t:sections.all.grid.column_gap.options__xl.label"
+        }
+      ],
+      "default": "large",
+      "label": "t:sections.all.grid.column_gap.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.mobile.name"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "t:sections.all.mobile.columns_mobile.options__1.label"
+        },
+        {
+          "value": "2",
+          "label": "t:sections.all.mobile.columns_mobile.options__2.label"
+        }
+      ],
+      "default": "1",
+      "label": "t:sections.all.mobile.columns_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.divider.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_section_divider",
+      "default": false,
+      "label": "t:sections.all.divider.settings.show_divider.label"
+    },
+    {
+      "type": "select",
+      "id": "divider_width",
+      "options": [
+        {
+          "value": "fixed",
+          "label": "t:sections.all.container.options__fixed.label"
+        },
+        {
+          "value": "full",
+          "label": "t:sections.all.container.options__full.label"
+        }
+      ],
+      "default": "fixed",
+      "label": "t:sections.all.divider.settings.divider_width.label",
+      "visible_if": "{{ section.settings.show_section_divider == true }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "ML product information"
+    }
+  ]
+}
+{% endschema %}

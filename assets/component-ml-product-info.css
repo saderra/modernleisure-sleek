@@ -1,0 +1,10 @@
+/*
+Custom section CSS developed by Aneurin Barker Snook <aneurin@aneur.in> for Saderra <corinne@saderra.com> Modern Leisure.
+*/
+.ml-product-info .f-column {
+    padding: 4.8rem 3rem;
+}
+
+.ml-product-info__title + .ml-product-info__text {
+    margin-top: 0.8rem;
+}
