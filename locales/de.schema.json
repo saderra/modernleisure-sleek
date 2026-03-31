@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "Überschriften-Tag"
+        "label": "Überschriften-Tag",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "Geben Sie Überschriften-Tag-Typen für SEO und Suchmaschinen zu Crawling-Zwecken an."
       },
       "text_alignment": {
         "label": "Textausrichtung",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "Überschrift",
-        "name": "Überschrift"
+        "name": "Überschrift",
+        "content": "Überschrift"
       },
       "subheading": {
         "label": "Unterüberschrift",
@@ -2073,6 +2081,13 @@
             "label": "Farbe"
           }
         },
+        "customer_account": {
+          "content": "Kundenkonto",
+          "paragraph": "[Sichtbarkeit verwalten](/admin/settings/customer_accounts) in den Einstellungen des Kundenkontos.",
+          "menu": {
+            "label": "Menü"
+          }
+        },
         "mobile_layout": {
           "content": "Mobiles Layout"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "404-Seite"
     },
     "multicolumn": {
       "name": "Mehrspaltig",

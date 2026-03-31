@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "Başlık etiketi"
+        "label": "Başlık etiketi",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "SEO ve arama motorları için tarama amacıyla başlık etiket türlerini belirtin."
       },
       "text_alignment": {
         "label": "Metin hizalama",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "Başlık",
-        "name": "Başlık"
+        "name": "Başlık",
+        "content": "Başlık"
       },
       "subheading": {
         "label": "Alt başlık",
@@ -2073,6 +2081,13 @@
             "label": "Renk"
           }
         },
+        "customer_account": {
+          "content": "Müşteri hesabı",
+          "paragraph": "Müşteri hesabı ayarlarında [görünürlüğü yönet](/admin/settings/customer_accounts).",
+          "menu": {
+            "label": "Menü"
+          }
+        },
         "mobile_layout": {
           "content": "Mobil düzen"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "404 sayfası"
     },
     "multicolumn": {
       "name": "Çok sütunlu",

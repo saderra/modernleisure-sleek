@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "Etichetta di intestazione"
+        "label": "Etichetta di intestazione",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "Specificare i tipi di tag di intestazione per SEO e motori di ricerca per scopi di indicizzazione."
       },
       "text_alignment": {
         "label": "Allineamento del testo",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "Intestazione",
-        "name": "Intestazione"
+        "name": "Intestazione",
+        "content": "Intestazione"
       },
       "subheading": {
         "label": "Sottotitolo",
@@ -2073,6 +2081,13 @@
             "label": "Colore"
           }
         },
+        "customer_account": {
+          "content": "Account cliente",
+          "paragraph": "[Gestisci visibilità](/admin/settings/customer_accounts) nelle impostazioni dell'account cliente.",
+          "menu": {
+            "label": "Menu"
+          }
+        },
         "mobile_layout": {
           "content": "Disposizione mobile"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "Pagina 404"
     },
     "multicolumn": {
       "name": "Multicolonna",

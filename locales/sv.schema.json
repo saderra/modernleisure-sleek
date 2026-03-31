@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "Rubriktagg"
+        "label": "Rubriktagg",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "Ange rubriktaggtyper för SEO och sökmotorer för crawländamål."
       },
       "text_alignment": {
         "label": "Textjustering",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "Rubrik",
-        "name": "Rubrik"
+        "name": "Rubrik",
+        "content": "Rubrik"
       },
       "subheading": {
         "label": "Underrubrik",
@@ -2073,6 +2081,13 @@
             "label": "Färg"
           }
         },
+        "customer_account": {
+          "content": "Kundkonto",
+          "paragraph": "[Hantera synlighet](/admin/settings/customer_accounts) i kundkontoinställningarna.",
+          "menu": {
+            "label": "Meny"
+          }
+        },
         "mobile_layout": {
           "content": "Mobil layout"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "404-sida"
     },
     "multicolumn": {
       "name": "Flerkolumn",

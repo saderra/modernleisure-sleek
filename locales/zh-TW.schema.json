@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "標題標籤"
+        "label": "標題標籤",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "為SEO和搜尋引擎的爬取目的指定標題標籤類型。"
       },
       "text_alignment": {
         "label": "文字對齊",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "標題",
-        "name": "標題"
+        "name": "標題",
+        "content": "標題"
       },
       "subheading": {
         "label": "副標題",
@@ -2073,6 +2081,13 @@
             "label": "顏色"
           }
         },
+        "customer_account": {
+          "content": "客戶帳戶",
+          "paragraph": "在客戶帳戶設定中[管理可見性](/admin/settings/customer_accounts)。",
+          "menu": {
+            "label": "選單"
+          }
+        },
         "mobile_layout": {
           "content": "移動佈局"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "404 頁面"
     },
     "multicolumn": {
       "name": "多列",

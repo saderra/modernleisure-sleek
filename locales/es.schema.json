@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "etiqueta de encabezado"
+        "label": "etiqueta de encabezado",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "Especifique los tipos de etiquetas de encabezado para SEO y motores de búsqueda con fines de rastreo."
       },
       "text_alignment": {
         "label": "Alineación del texto",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "Título",
-        "name": "Título"
+        "name": "Título",
+        "content": "Título"
       },
       "subheading": {
         "label": "Subtítulo",
@@ -2073,6 +2081,13 @@
             "label": "Color"
           }
         },
+        "customer_account": {
+          "content": "Cuenta de cliente",
+          "paragraph": "[Gestionar visibilidad](/admin/settings/customer_accounts) en la configuración de la cuenta de cliente.",
+          "menu": {
+            "label": "Menú"
+          }
+        },
         "mobile_layout": {
           "content": "Diseño móvil"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "Página 404"
     },
     "multicolumn": {
       "name": "multicolumna",

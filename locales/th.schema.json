@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "แท็กหัวเรื่อง"
+        "label": "แท็กหัวเรื่อง",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "ระบุประเภทแท็กหัวเรื่องสำหรับ SEO และเครื่องมือค้นหาสำหรับวัตถุประสงค์ในการรวบรวมข้อมูล"
       },
       "text_alignment": {
         "label": "การจัดตำแหน่งข้อความ",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "หัวเรื่อง",
-        "name": "หัวเรื่อง"
+        "name": "หัวเรื่อง",
+        "content": "หัวเรื่อง"
       },
       "subheading": {
         "label": "หัวเรื่องย่อย",
@@ -2073,6 +2081,13 @@
             "label": "สี"
           }
         },
+        "customer_account": {
+          "content": "บัญชีลูกค้า",
+          "paragraph": "[จัดการการมองเห็น](/admin/settings/customer_accounts) ในการตั้งค่าบัญชีลูกค้า",
+          "menu": {
+            "label": "เมนู"
+          }
+        },
         "mobile_layout": {
           "content": "เค้าโครงมือถือ"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "หน้า 404"
     },
     "multicolumn": {
       "name": "หลายคอลัมน์",

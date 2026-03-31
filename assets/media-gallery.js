@@ -35,7 +35,8 @@ if (!customElements.get('media-gallery')) {
         this.updateMediaLayout();
 
         if (this.enableImageZoom) {
-          this.initImageZoom();
+          const allMedia = [...this.querySelectorAll('.product__media-item:not(.swiper-slide-duplicate)')];
+          this.initImageZoom(allMedia);
         }
       }
 
@@ -145,11 +146,10 @@ if (!customElements.get('media-gallery')) {
         }
       }
 
-      initImageZoom() {
+      initImageZoom(items = []) {
         let dataSource = [];
-        const allMedia = [...this.querySelectorAll('.product__media-item:not(.swiper-slide-duplicate)')];
-        if (allMedia) {
-          allMedia.forEach((media) => {
+        if (items.length > 0) {
+          items.forEach((media) => {
             switch (media.dataset.mediaType) {
               case 'model':
                 dataSource.push({
@@ -193,6 +193,7 @@ if (!customElements.get('media-gallery')) {
           close: false,
           counter: false,
           preloader: false,
+          preload: [1, 4],
         });
 
         this.lightbox.addFilter('thumbEl', (thumbEl, { id }, index) => {
@@ -209,17 +210,10 @@ if (!customElements.get('media-gallery')) {
           return thumbEl;
         });
 
-        this.lightbox.addFilter('placeholderSrc', (placeholderSrc, { data: { id } }) => {
-          if (this.sliderInstance && this.sliderInstance.slider) {
-            const { slides, activeIndex } = this.sliderInstance.slider;
-            if (slides[activeIndex]) {
-              const el = slides[activeIndex].querySelector('img');
-              if (el) {
-                return el.src;
-              }
-            }
+        this.lightbox.addFilter('placeholderSrc', (placeholderSrc, { data }) => {
+          if (data.src) {
+            return data.src;
           }
-
           return placeholderSrc;
         });
 
@@ -360,6 +354,13 @@ if (!customElements.get('media-gallery')) {
         newMedias.forEach((media) => {
           this.elements.mediaList.appendChild(media);
         });
+
+        // Reset ordering.
+        newMedias.sort(function (a, b) {
+          return a.dataset.mediaIndex - b.dataset.mediaIndex;
+        });
+
+        this.initImageZoom(newMedias);
 
         if (!FoxTheme.config.mqlMobile) {
           const selectedMedia = this.querySelector(`[data-media-id="${variant.featured_media.id}"]`);

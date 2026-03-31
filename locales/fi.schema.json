@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "Otsikkotunniste"
+        "label": "Otsikkotunniste",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "Määritä otsikkotunnistetyypit SEO:lle ja hakukoneille indeksointitarkoituksessa."
       },
       "text_alignment": {
         "label": "Tekstin tasaus",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "Otsikko",
-        "name": "Otsikko"
+        "name": "Otsikko",
+        "content": "Otsikko"
       },
       "subheading": {
         "label": "Alaotsikko",
@@ -2073,6 +2081,13 @@
             "label": "Väri"
           }
         },
+        "customer_account": {
+          "content": "Asiakastili",
+          "paragraph": "[Hallitse näkyvyyttä](/admin/settings/customer_accounts) asiakastilin asetuksissa.",
+          "menu": {
+            "label": "Valikko"
+          }
+        },
         "mobile_layout": {
           "content": "Mobiiliasettelu"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "404-sivu"
     },
     "multicolumn": {
       "name": "Monisarake",

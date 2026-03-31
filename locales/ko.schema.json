@@ -960,7 +960,14 @@
         }
       },
       "heading_tag": {
-        "label": "제목 태그"
+        "label": "제목 태그",
+        "options__1": { "label": "H1" },
+        "options__2": { "label": "H2" },
+        "options__3": { "label": "H3" },
+        "options__4": { "label": "H4" },
+        "options__5": { "label": "H5" },
+        "options__6": { "label": "H6" },
+        "info": "SEO 및 검색 엔진의 크롤링 목적으로 제목 태그 유형을 지정합니다."
       },
       "text_alignment": {
         "label": "텍스트 정렬",
@@ -1031,7 +1038,8 @@
       },
       "heading": {
         "label": "표제",
-        "name": "표제"
+        "name": "표제",
+        "content": "표제"
       },
       "subheading": {
         "label": "소제목",
@@ -2073,6 +2081,13 @@
             "label": "색상"
           }
         },
+        "customer_account": {
+          "content": "고객 계정",
+          "paragraph": "고객 계정 설정에서 [표시 여부 관리](/admin/settings/customer_accounts).",
+          "menu": {
+            "label": "메뉴"
+          }
+        },
         "mobile_layout": {
           "content": "모바일 레이아웃"
         },
@@ -3097,6 +3112,9 @@
           }
         }
       }
+    },
+    "main-404": {
+      "name": "404 페이지"
     },
     "multicolumn": {
       "name": "다중 열",
